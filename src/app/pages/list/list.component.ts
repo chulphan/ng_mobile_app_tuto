@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import * as SocialShare from "nativescript-social-share";
 import { Page } from "tns-core-modules/ui/page";
 import { TextField } from "tns-core-modules/ui/text-field";
 import { Grocery } from "../../shared/grocery/grocery";
@@ -51,5 +52,11 @@ export class ListComponent implements OnInit {
         this.grocery = "";
       }
     );
+  }
+
+  public share() {
+    const list = this.groceryList.map(grocery => grocery.name);
+    const listString = list.join(", ").trim();
+    SocialShare.shareText(listString);
   }
 }
