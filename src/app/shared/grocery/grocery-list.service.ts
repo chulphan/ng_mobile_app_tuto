@@ -26,7 +26,7 @@ export class GroceryService {
         map((data: any[]) => {
           const groceryList = data
             .sort((a, b) => {
-              return a._kmd.lmt > b._kmd.lmt ? -1 : 1;
+              return a._kmd.lmt > b._kmd.lmt ? 1 : -1;
             })
             .map(
               grocery => new Grocery(grocery._id, grocery.Name || grocery.name)
