@@ -1,0 +1,33 @@
+ListView {
+  opacity: 0;
+}
+
+.visible {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.add-bar {
+  background-color: #03bafc;
+  padding: 5 10;
+}
+.add-bar image {
+  height: 15;
+  vertical-align: center;
+  margin-left: 10;
+  margin-right: 5;
+}
+TextField {
+  color: white;
+  placeholder-color: white;
+}
