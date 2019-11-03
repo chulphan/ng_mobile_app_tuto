@@ -54,6 +54,23 @@ export class ListComponent implements OnInit {
     );
   }
 
+  public delete(item: Grocery) {
+    this.groceryService.delete(item).subscribe(() => {
+      this.groceryList = this.groceryList.filter(grocery => grocery.id !== item.id);
+      alert({
+        'message': 'Successfully Deleted',
+        okButtonText: 'OK'
+      })
+    }, (err) => {
+      if (err.status === 401) {
+        alert({
+          'message': 'You dose not have AUTHORIZATION',
+          okButtonText: 'OK'
+        })
+      }
+    })
+  }
+
   public share() {
     const list = this.groceryList.map(grocery => grocery.name);
     const listString = list.join(", ").trim();

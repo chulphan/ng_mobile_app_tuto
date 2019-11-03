@@ -24,7 +24,10 @@
     class="small-spacing"
   >
     <ng-template let-item="item">
-      <Label [text]="item.name" class="medium-spacing"></Label>
+      <GridLayout row="0" columns="*, auto">
+        <Label [text]="item.name" class="medium-spacing"></Label>
+        <Image src="res://delete" (tap)="delete(item)" col="1"></Image>
+      </GridLayout>
     </ng-template>
   </ListView>
   <ActivityIndicator

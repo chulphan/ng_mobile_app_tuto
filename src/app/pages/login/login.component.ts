@@ -3,8 +3,10 @@ import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
 import { Color } from "tns-core-modules/color";
 import { View } from "tns-core-modules/ui/core/view";
+import {TextField} from 'tns-core-modules/ui/text-field'
 import { UserService } from "../../shared/user/user.service";
 import { User } from "../../shared/user/user";
+import { setHintColor } from '../../utils/hint-util'
 
 @Component({
   selector: "gr-main",
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
 
   public toggleDisplay() {
     this.isLogginIn = !this.isLogginIn;
+    this.setTextFieldColors();
     const container = <View>this.page.getViewById("container");
     container.animate({
       backgroundColor: this.isLogginIn
@@ -73,5 +76,18 @@ export class LoginComponent implements OnInit {
         alert("Unfortunately we were unable to create your account.");
       }
     );
+  }
+
+  private setTextFieldColors() {
+    const emailTextField = <TextField>this.page.getViewById('email');
+    const passwordTextField = <TextField>this.page.getViewById('password');
+
+    const mainTextColor = new Color(this.isLogginIn ? 'black' : '#C4AFB4');
+    emailTextField.color = mainTextColor;
+    passwordTextField.color = mainTextColor;
+
+    const hintColor = new Color(this.isLogginIn ? '#ACA6A7' : '#C4AFB4');
+    setHintColor({ view: emailTextField, color: hintColor });
+    setHintColor({ view: passwordTextField, color: hintColor });
   }
 }

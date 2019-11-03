@@ -50,6 +50,16 @@ export class GroceryService {
       );
   }
 
+  public delete(item: Grocery) {
+    return this.http.delete(
+      `${this.baseUrl}/${item.id}`,
+      {headers: this.getCommonHeaders()}
+    ).pipe(
+      map(data => data),
+      catchError(this.handleErrors)
+    );
+  }
+
   private getCommonHeaders() {
     return new HttpHeaders({
       "Content-Type": "application/json",
